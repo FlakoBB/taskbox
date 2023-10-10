@@ -1,0 +1,25 @@
+@use 'colors' as clr;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: clr.$black;
+}
+
+html {
+  min-height: 100dvh;
+
+  body {
+    min-height: 100dvh;
+    background-color: clr.$white;
+
+    h1 {
+      color: clr.$blue;
+    }
+
+    .icon {
+      width: 1rem;
+    }
+  }
+}
