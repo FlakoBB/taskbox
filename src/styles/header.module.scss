@@ -1,0 +1,46 @@
+@use 'colors' as clr;
+@use 'mixins' as mxn;
+
+.header {
+  @include mxn.flex_center;
+  justify-content: space-between;
+  height: 5rem;
+  padding: 0 4rem;
+  border-bottom: 2px solid clr.$blue;
+
+  .logo {
+    height: 4rem;
+
+    img {
+      height: 4rem;
+      width: auto;
+    }
+  }
+
+  .actions {
+    @include mxn.flex_center;
+    gap: 2rem;
+
+    span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: clr.$blue;
+    }
+
+    button {
+      width: 6rem;
+      height: 3rem;
+      background: none;
+      border: 1px solid clr.$blue;
+      border-radius: .5rem;
+      color: clr.$blue;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: rgba(clr.$blue, .1);
+      }
+    }
+  }
+}
