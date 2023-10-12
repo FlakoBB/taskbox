@@ -1,0 +1,33 @@
+@use 'colors' as clr;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  padding: 1rem;
+  border: 2px solid clr.$blue;
+  border-radius: 1rem;
+
+  .title {
+    flex-shrink: 0;
+    font-size: 2rem;
+    font-size: 700;
+    color: clr.$blue;
+    border-bottom: 2px solid clr.$blue;
+  }
+
+  .content {
+    flex-grow: 1;
+    padding: 1rem 0;
+  }
+
+  &.danger {
+    border: 2px solid clr.$red;
+
+    .title {
+      color: clr.$red;
+      border-bottom: 2px solid clr.$red;
+    }
+  }
+}

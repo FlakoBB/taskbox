@@ -1,0 +1,21 @@
+@use 'colors' as clr;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  padding: 0 4rem;
+  background-color: clr.$blue;
+
+  p {
+    color: clr.$white;
+
+    span,
+    a {
+      color: inherit;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+}
