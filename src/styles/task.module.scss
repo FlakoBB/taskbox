@@ -1,0 +1,116 @@
+@use 'colors' as clr;
+@use 'mixins' as mxn;
+
+.container {
+  @include mxn.flex_center;
+  flex-direction: column;
+  min-width: 10rem;
+  width: 10rem;
+  aspect-ratio: 1 / 1;
+  border-radius: .5rem;
+  overflow: hidden;
+  background-color: rgba(clr.$blue, .2);
+  cursor: pointer;
+  
+  .priority {
+    @include mxn.flex_center;
+    flex-shrink: 0;
+    width: 100%;
+    height: 2rem;
+
+    &.normal {
+      background-color: clr.$pink;
+    }
+
+    &.urgent {
+      background-color: clr.$yellow;
+    }
+
+    span {
+      font-size: .9rem;
+      font-weight: 500;
+    }
+  }
+
+  .content {
+    align-self: stretch;
+    @include mxn.flex_center;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: .5rem;
+
+    .title {
+      align-self: stretch;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .btns {
+      align-self: flex-end;
+      display: flex;
+      gap: .5rem;
+
+      button {
+        @include mxn.flex_center;
+        width: 2rem;
+        height: 2rem;
+        background: none;
+        border: none;
+        border-radius: .3rem;
+        cursor: pointer;
+
+        &.btn_delete {
+          background-color: clr.$red;
+
+          &:hover {
+            background-color: rgba(clr.$red, .6);
+          }
+        }
+
+        &.btn_complete {
+          background-color: clr.$green;
+
+          &:hover {
+            background-color: rgba(clr.$green, .6);
+          }
+        }
+
+        svg {
+          fill: clr.$white;
+          width: 1.2rem;
+        }
+      }
+    }
+  }
+
+  &.completed {
+    background-color: rgba(clr.$green, .2);
+
+    .content{
+      .btns {
+        button {
+          &.btn_complete {
+            background-color: clr.$blue;
+
+            &:hover {
+              background-color: rgba(clr.$blue, .6);
+            }
+          }
+        }
+      }
+    }
+
+    &:hover {
+      background-color: rgba(clr.$green, .3);
+    }
+  }
+
+  &:hover {
+    background-color: rgba(clr.$blue, .3);
+  }
+}

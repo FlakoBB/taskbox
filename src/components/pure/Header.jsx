@@ -8,6 +8,7 @@ const Header = () => {
         <Image src='/logo.png' alt='Logo de TaskBox' width='570' height='200' />
       </figure>
       <div className={styles.actions}>
+        {/* // ToDo: make a link to profile page and toggle between profile and main page */}
         <span>FlakoBB</span>
         <button type='button'>Salir</button>
       </div>

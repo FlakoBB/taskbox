@@ -1,0 +1,25 @@
+@use 'colors' as clr;
+@use 'mixins' as mxn;
+
+.container {
+  width: fit-content;
+  
+  label {
+    @include mxn.flex_center;
+    gap: .5rem;
+    cursor: pointer;
+
+    .radio {
+      width: .8rem;
+      height: .8rem;
+      border-radius: 50%;
+      border: 1px solid clr.$blue;
+      
+      &.checked {
+        border: 1px solid clr.$white;
+        background-color: clr.$blue;
+        box-shadow: 0 0 5px 1px clr.$blue;
+      }
+    }
+  }
+}
