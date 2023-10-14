@@ -6,8 +6,8 @@ const Task = () => {
 
   return (
     <article className={`${styles.container} ${isCompleted && styles.completed}`}>
-      <div className={`${styles.priority} ${styles.urgent}`}>
-        <span>Urgente</span>
+      <div className={`${styles.priority} ${styles.normal}`}>
+        <span>Normal</span>
       </div>
       <div className={styles.content}>
         <p className={styles.title}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

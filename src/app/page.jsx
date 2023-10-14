@@ -6,6 +6,7 @@ import Footer from '@/components/pure/Footer'
 import Task from '@/components/pure/Task'
 import Radio from '@/components/pure/Radio'
 import { useState } from 'react'
+import NewTaskForm from '@/components/forms/newTaskForm'
 
 export default function Home () {
   const [filter, setFilter] = useState('all')
@@ -25,7 +26,7 @@ export default function Home () {
           <Task />
         </SectionContainer>
         <SectionContainer title='Nueva Tarea'>
-          Foormulario de nueva tarea
+          <NewTaskForm />
         </SectionContainer>
       </main>
       <Footer />

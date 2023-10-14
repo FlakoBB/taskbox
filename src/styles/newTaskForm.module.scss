@@ -1,0 +1,67 @@
+@use 'colors' as clr;
+@use 'mixins' as mxn;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 100%;
+
+  .input_group {
+    @include mxn.flex_center;
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: clr.$blue;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background-color: rgba(clr.$blue, .2);
+      border: none;
+      outline: none;
+      border-radius: .5rem;
+      font-family: inherit;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: .2rem .5rem;
+    }
+
+    input,
+    select {
+      height: 2.5rem;
+    }
+
+    textarea {
+      flex-grow: 1;
+      resize: none;
+    }
+  }
+
+  .input_group:has(textarea) {
+    flex-grow: 1;
+  }
+
+  button {
+    height: 2.5rem;
+    border: none;
+    border-radius: .5rem;
+    background-color: clr.$blue;
+    color: clr.$white;
+    font-weight: 500;
+    font-size: 1.2rem;
+    font-family: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(clr.$blue, .8);
+    }
+  }
+}
