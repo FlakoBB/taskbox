@@ -7,8 +7,19 @@
   color: clr.$black;
 }
 
+::-webkit-scrollbar {
+  width: .4rem;
+  border: 1px solid clr.$blue;
+  border-radius: .4rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: clr.$blue;
+  border-radius: .4rem;
+}
+
 html {
-  min-height: 100dvh;
+  font-size: 16px;
 
   body {
     min-height: 100dvh;
@@ -23,3 +34,15 @@ html {
     }
   }
 }
+
+// @media (prefers-color-scheme: dark) {
+//   * {
+//     color: clr.$white;
+//   }
+
+//   html {
+//     body {
+//       background-color: clr.$black;
+//     }
+//   }
+// }

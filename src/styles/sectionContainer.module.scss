@@ -12,14 +12,16 @@
   .title {
     flex-shrink: 0;
     font-size: 2rem;
-    font-size: 700;
+    font-weight: 700;
+    line-height: 1;
     color: clr.$blue;
     border-bottom: 2px solid clr.$blue;
   }
 
   .content {
     flex-grow: 1;
-    padding: 1rem 0 0 0;
+    max-height: calc(100% - calc(2rem + 2px));
+    padding: 1rem 0 0;
   }
 
   &.danger {

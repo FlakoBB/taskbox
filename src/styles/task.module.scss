@@ -5,8 +5,7 @@
   @include mxn.flex_center;
   flex-direction: column;
   min-width: 10rem;
-  width: 10rem;
-  aspect-ratio: 1 / 1;
+  height: 10rem;
   border-radius: .5rem;
   overflow: hidden;
   background-color: rgba(clr.$blue, .2);
@@ -17,16 +16,17 @@
     flex-shrink: 0;
     width: 100%;
     height: 2rem;
-
+    
     &.normal {
       background-color: clr.$pink;
     }
-
+    
     &.urgent {
       background-color: clr.$yellow;
     }
-
+    
     span {
+      color: clr.$black;
       font-size: .9rem;
       font-weight: 500;
     }
@@ -92,6 +92,10 @@
     background-color: rgba(clr.$green, .2);
 
     .content{
+      .title {
+        text-decoration: line-through;
+      }
+
       .btns {
         button {
           &.btn_complete {
