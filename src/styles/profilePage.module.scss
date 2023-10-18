@@ -1,0 +1,92 @@
+@use 'colors' as clr;
+@use 'mixins' as mxn;
+
+.main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100%;
+  gap: 1rem;
+  height: calc(100dvh - 8rem);
+  padding: 1rem 4rem;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100%;
+
+    .fieldContainer {
+      label {
+        color: clr.$blue;
+        font-weight: 600;
+        font-size: 1rem
+      }
+
+      .field {
+        @include mxn.flex_center;
+        justify-content: space-between;
+        gap: .5rem;
+        min-height: 3rem;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        background-color: rgba(clr.$blue, .2);
+        
+        input,
+        textarea {
+          flex-grow: 1;
+          min-height: 2rem;
+          background: none;
+          border: none;
+          outline: none;
+          font-size: 1.2rem;
+          font-weight: 500;
+          font-family: inherit;
+        }
+
+        textarea {
+          resize: none;
+          height: 100%;
+        }
+
+        button {
+          flex-shrink: 0;
+          @include mxn.flex_center;
+          align-self: flex-start;
+          width: 2rem;
+          height: 2rem;
+          background-color: clr.$blue;
+          color: clr.$white;
+          border: none;
+          border-radius: .3rem;
+          cursor: pointer;
+
+          svg {
+            fill: clr.$white;
+            width: 1.2rem;
+          }
+
+          &:hover {
+            background-color: rgba(clr.$blue, .8);
+          }
+        }
+      }
+    }
+
+    .btnDanger {
+      height: 3rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: clr.$white;
+      border: none;
+      border-radius: .5rem;
+      outline: none;
+      background-color: clr.$red;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(clr.$red, .8);
+      }
+    }
+  }
+}
