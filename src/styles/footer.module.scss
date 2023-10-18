@@ -8,14 +8,17 @@
   padding: 0 4rem;
   background-color: clr.$blue;
 
+  a {
+    text-decoration: none;
+  }
+
   p {
     color: clr.$white;
-
+    
     span,
     a {
       color: inherit;
       font-weight: 600;
-      text-decoration: none;
     }
   }
 }

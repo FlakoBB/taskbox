@@ -21,7 +21,8 @@
     @include mxn.flex_center;
     gap: 2rem;
 
-    span {
+    .link {
+      text-decoration: none;
       font-size: 1.5rem;
       font-weight: 700;
       color: clr.$blue;
