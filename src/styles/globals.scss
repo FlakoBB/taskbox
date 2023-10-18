@@ -1,4 +1,5 @@
 @use 'colors' as clr;
+@use 'mixins' as mxn;
 
 * {
   margin: 0;
@@ -31,6 +32,18 @@ html {
 
     .icon {
       width: 1rem;
+    }
+
+    .formPage {
+      @include mxn.flex_center;
+      height: 100dvh;
+      padding: 1rem;
+
+      & :first-child {
+        width: 100%;
+        max-width: 25rem;
+        height: fit-content;
+      }
     }
   }
 }

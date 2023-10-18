@@ -1,0 +1,65 @@
+@use 'colors' as clr;
+@use 'mixins' as mxn;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.2rem;
+
+  .inputGroup {
+    @include mxn.flex_center;
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: clr.$blue;
+
+      span {
+        color: clr.$red;
+        font-size: .9rem;
+        font-weight: 400;
+      }
+    }
+
+    input {
+      width: 100%;
+      background-color: rgba(clr.$blue, .2);
+      border: none;
+      outline: none;
+      border-radius: .5rem;
+      font-family: inherit;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: .2rem .5rem;
+    }
+  }
+
+  button {
+    height: 2.5rem;
+    border: none;
+    border-radius: .5rem;
+    background-color: clr.$blue;
+    color: clr.$white;
+    font-weight: 500;
+    font-size: 1.2rem;
+    font-family: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(clr.$blue, .8);
+    }
+  }
+
+  p {
+    font-size: .9rem;
+    font-weight: 400;
+    
+    a {
+      color: clr.$blue;
+      text-decoration: none;
+    }
+  }
+}
