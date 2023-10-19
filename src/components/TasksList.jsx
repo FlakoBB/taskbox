@@ -6,6 +6,15 @@ const TasksList = () => {
     <div className={styles.list}>
       <Task />
       <Task />
+      <Task />
+      <Task />
+      <Task />
+      <Task />
+      <Task />
+      <Task />
+      <Task />
+      <Task />
+      <Task />
     </div>
   )
 }

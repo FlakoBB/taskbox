@@ -20,14 +20,16 @@ export default function Home () {
       <Header />
       <main className={styles.main}>
         <SectionContainer title='Tus Tareas'>
-          <div className={styles.radio_group}>
-            <Radio name='tareas' label='Todas' state={filter === 'all'} onChange={() => handleFilterChange('all')} />
-            <Radio name='tareas' label='Pendientes' state={filter === 'active'} onChange={() => handleFilterChange('active')} />
-            <Radio name='tareas' label='Completadas' state={filter === 'completed'} onChange={() => handleFilterChange('completed')} />
-            <Radio name='tareas' label='Normales' state={filter === 'normals'} onChange={() => handleFilterChange('normals')} />
-            <Radio name='tareas' label='Urgentes' state={filter === 'urgents'} onChange={() => handleFilterChange('urgents')} />
+          <div className={styles.listContainer}>
+            <div className={styles.radio_group}>
+              <Radio name='tareas' label='Todas' state={filter === 'all'} onChange={() => handleFilterChange('all')} />
+              <Radio name='tareas' label='Pendientes' state={filter === 'active'} onChange={() => handleFilterChange('active')} />
+              <Radio name='tareas' label='Completadas' state={filter === 'completed'} onChange={() => handleFilterChange('completed')} />
+              <Radio name='tareas' label='Normales' state={filter === 'normals'} onChange={() => handleFilterChange('normals')} />
+              <Radio name='tareas' label='Urgentes' state={filter === 'urgents'} onChange={() => handleFilterChange('urgents')} />
+            </div>
+            <TasksList />
           </div>
-          <TasksList />
         </SectionContainer>
         <SectionContainer title='Nueva Tarea'>
           <NewTaskForm />

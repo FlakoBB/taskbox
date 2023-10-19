@@ -35,12 +35,42 @@
       border: 1px solid clr.$blue;
       border-radius: .5rem;
       color: clr.$blue;
+      font-family: inherit;
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
       
       &:hover {
         background-color: rgba(clr.$blue, .1);
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    height: 4rem;
+    padding: 1rem;
+
+    .logo {
+      height: 3rem;
+  
+      img {
+        height: 3rem;
+      }
+    }
+
+    .actions {
+      gap: 1rem;
+
+      .link {
+        font-size: 1.2rem;
+      }
+
+      button {
+        width: 5rem;
+        height: 2rem;
+        font-size: 1rem;
       }
     }
   }

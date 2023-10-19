@@ -36,7 +36,7 @@ html {
 
     .formPage {
       @include mxn.flex_center;
-      height: 100dvh;
+      min-height: 100dvh;
       padding: 1rem;
 
       & :first-child {
@@ -45,6 +45,12 @@ html {
         height: fit-content;
       }
     }
+  }
+}
+
+@media (max-width: 1023px) {
+  html {
+    font-size: 14px;
   }
 }
 
