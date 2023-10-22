@@ -40,3 +40,18 @@ export const loginUser = async (data) => {
     throw error
   }
 }
+
+export const getSingleUser = async (user) => {
+  try {
+    const response = await fetch(`http://localhost:8000/users/${user}`)
+
+    if (!response.ok) {
+      throw new Error('Usuario no encontrado')
+    }
+
+    return response.json()
+  } catch (error) {
+    console.log('Error al obtener usuario', error)
+    throw error
+  }
+}

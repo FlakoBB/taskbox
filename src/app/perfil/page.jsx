@@ -1,13 +1,20 @@
 'use client'
+import { getSingleUser } from '@/api/users'
 import SectionContainer from '@/components/SectionContainer'
 import { EditIcon } from '@/components/icons/icons'
 import Footer from '@/components/pure/Footer'
 import Header from '@/components/pure/Header'
 import styles from '@/styles/profilePage.module.scss'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const ProfilePage = () => {
+  const [userData, setUserData] = useState({
+    username: '',
+    name: '',
+    surname: '',
+    password: ''
+  })
   const router = useRouter()
 
   useEffect(() => {
@@ -15,7 +22,17 @@ const ProfilePage = () => {
     if (!session) {
       router.push('/acceder')
     }
+    const getUser = async () => {
+      try {
+        const data = await getSingleUser(session)
+        setUserData(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUser()
   }, [])
+
   return (
     <>
       <Header />
@@ -25,7 +42,7 @@ const ProfilePage = () => {
             <div className={styles.fieldContainer}>
               <label>Usuario:</label>
               <div className={styles.field}>
-                <input type='text' value='FlakoBB' readOnly />
+                <input type='text' value={userData.username} readOnly />
                 <button>
                   <EditIcon />
                 </button>
@@ -34,7 +51,7 @@ const ProfilePage = () => {
             <div className={styles.fieldContainer}>
               <label>Nombre:</label>
               <div className={styles.field}>
-                <input type='text' value='Joseph' readOnly />
+                <input type='text' value={userData.name} readOnly />
                 <button>
                   <EditIcon />
                 </button>
@@ -43,7 +60,7 @@ const ProfilePage = () => {
             <div className={styles.fieldContainer}>
               <label>Apellido:</label>
               <div className={styles.field}>
-                <input type='text' value='Ryan' readOnly />
+                <input type='text' value={userData.surname} readOnly />
                 <button>
                   <EditIcon />
                 </button>
@@ -52,7 +69,7 @@ const ProfilePage = () => {
             <div className={styles.fieldContainer}>
               <label>Contraseña:</label>
               <div className={styles.field}>
-                <input type='text' value='&bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull; &bull;' readOnly />
+                <input type='password' value={userData.password} readOnly />
                 <button>
                   <EditIcon />
                 </button>
