@@ -2,11 +2,14 @@
 import { loginUser } from '@/api/users'
 import styles from '@/styles/registerForm.module.scss'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useId, useState } from 'react'
 
 const LoginForm = () => {
   const usernameID = useId()
   const passwordID = useId()
+
+  const router = useRouter()
 
   const [loginData, setLoginData] = useState({
     username: '',
@@ -25,7 +28,8 @@ const LoginForm = () => {
     event.preventDefault()
     try {
       await loginUser(loginData)
-      console.log('sesion iniciada')
+      localStorage.setItem('TBS', loginData.username)
+      router.push('/')
       event.target.reset()
     } catch (error) {
       console.log(error.message)

@@ -2,11 +2,18 @@
 import Image from 'next/image'
 import styles from '@/styles/header.module.scss'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Header = () => {
   const pathname = usePathname()
-  const username = 'FlakoBB' // ToDo: get username from API
+  const username = localStorage.getItem('TBS')
+
+  const router = useRouter()
+
+  const logout = () => {
+    localStorage.removeItem('TBS')
+    router.push('/acceder')
+  }
 
   return (
     <header className={styles.header}>
@@ -19,7 +26,7 @@ const Header = () => {
         <Link className={styles.link} href={pathname !== '/' ? '/' : '/perfil'}>
           {pathname === '/' ? username : 'Volver'}
         </Link>
-        <button type='button'>Salir</button>
+        <button type='button' onClick={logout}>Salir</button>
       </div>
     </header>
   )

@@ -2,6 +2,7 @@
 import { registerUser } from '@/api/users'
 import styles from '@/styles/registerForm.module.scss'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useId, useState } from 'react'
 
 const RegisterForm = () => {
@@ -25,12 +26,14 @@ const RegisterForm = () => {
     })
   }
 
+  const router = useRouter()
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     console.log(newUser)
     try {
       await registerUser(newUser)
-      console.log('Usuario registrado!')
+      router.push('/acceder')
       event.target.reset()
     } catch (error) {
       console.log(error.message)

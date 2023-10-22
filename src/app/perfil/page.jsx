@@ -1,10 +1,21 @@
+'use client'
 import SectionContainer from '@/components/SectionContainer'
 import { EditIcon } from '@/components/icons/icons'
 import Footer from '@/components/pure/Footer'
 import Header from '@/components/pure/Header'
 import styles from '@/styles/profilePage.module.scss'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 const ProfilePage = () => {
+  const router = useRouter()
+
+  useEffect(() => {
+    const session = localStorage.getItem('TBS')
+    if (!session) {
+      router.push('/acceder')
+    }
+  }, [])
   return (
     <>
       <Header />

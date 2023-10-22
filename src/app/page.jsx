@@ -4,11 +4,21 @@ import SectionContainer from '@/components/SectionContainer'
 import Header from '@/components/pure/Header'
 import Footer from '@/components/pure/Footer'
 import Radio from '@/components/pure/Radio'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NewTaskForm from '@/components/forms/newTaskForm'
 import TasksList from '@/components/TasksList'
+import { useRouter } from 'next/navigation'
 
 export default function Home () {
+  const router = useRouter()
+
+  useEffect(() => {
+    const session = localStorage.getItem('TBS')
+    if (!session) {
+      router.push('/acceder')
+    }
+  }, [])
+
   const [filter, setFilter] = useState('all')
 
   const handleFilterChange = (newFilter) => {
