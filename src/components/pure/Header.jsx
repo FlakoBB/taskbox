@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 
 const Header = () => {
   const pathname = usePathname()
-  const username = localStorage.getItem('TBS')
+  const username = typeof window !== 'undefined' && localStorage.getItem('TBS')
 
   const router = useRouter()
 

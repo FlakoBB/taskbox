@@ -11,7 +11,7 @@ const NewTaskForm = () => {
     title: '',
     description: '',
     priority: 'Normal',
-    user_id: localStorage.getItem('TBS')
+    user_id: typeof window !== 'undefined' && localStorage.getItem('TBS')
   })
 
   const handleChange = (event) => {
