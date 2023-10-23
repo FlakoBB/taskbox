@@ -1,13 +1,21 @@
 'use client'
+import { getSingleTask } from '@/api/tasks'
 import SectionContainer from '@/components/SectionContainer'
 import { EditIcon } from '@/components/icons/icons'
 import Footer from '@/components/pure/Footer'
 import Header from '@/components/pure/Header'
 import styles from '@/styles/taskPage.module.scss'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-const TaskPage = () => {
+const TaskPage = ({ params }) => {
+  const [taskData, setTaskData] = useState({
+    title: '',
+    description: '',
+    priority: '',
+    isCompleted: ''
+  })
+
   const router = useRouter()
 
   useEffect(() => {
@@ -15,6 +23,20 @@ const TaskPage = () => {
     if (!session) {
       router.push('/acceder')
     }
+    const getTaskDetails = async () => {
+      try {
+        const data = await getSingleTask(params.task_id)
+        setTaskData({
+          title: data.title,
+          description: data.description,
+          priority: data.priority,
+          isCompleted: data.is_completed
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getTaskDetails()
   }, [])
   return (
     <>
@@ -27,7 +49,7 @@ const TaskPage = () => {
                 <div className={styles.fieldContainer}>
                   <label>Titulo:</label>
                   <div className={styles.field}>
-                    <input type='text' value='Tomar curso de Python' readOnly />
+                    <input type='text' value={taskData.title} readOnly />
                     <button>
                       <EditIcon />
                     </button>
@@ -36,7 +58,7 @@ const TaskPage = () => {
                 <div className={styles.fieldContainer}>
                   <label>Prioridad:</label>
                   <div className={styles.field}>
-                    <input type='text' value='Normal' readOnly />
+                    <input type='text' value={taskData.priority} readOnly />
                     <button>
                       <EditIcon />
                     </button>
@@ -45,7 +67,7 @@ const TaskPage = () => {
                 <div className={styles.fieldContainer}>
                   <label>Estado:</label>
                   <div className={styles.field}>
-                    <input type='text' value='Activa' readOnly />
+                    <input type='text' value={!taskData.isCompleted ? 'Activa' : 'Completada'} readOnly />
                     <button>
                       <EditIcon />
                     </button>
@@ -54,9 +76,9 @@ const TaskPage = () => {
               </div>
               <div className={styles.inputs__section}>
                 <div className={styles.fieldContainer}>
-                  <label>Estado:</label>
+                  <label>Descripcion:</label>
                   <div className={styles.field}>
-                    <textarea value='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eget duis at tellus at urna. Vel risus commodo viverra maecenas accumsan lacus vel.' readOnly />
+                    <textarea value={taskData.description} readOnly />
                     <button>
                       <EditIcon />
                     </button>
