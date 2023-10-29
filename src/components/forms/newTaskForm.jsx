@@ -2,6 +2,9 @@
 import { addTask } from '@/api/tasks'
 import styles from '@/styles/newTaskForm.module.scss'
 import { useId, useState } from 'react'
+import { AngleIcon } from '../icons/icons'
+
+const priorityList = ['Normal', 'Urgente']
 
 const NewTaskForm = () => {
   const titleID = useId()
@@ -33,6 +36,14 @@ const NewTaskForm = () => {
     }
   }
 
+  const handleSelect = (event) => {
+    const value = event.target.innerText
+    setNewTask({
+      ...newTask,
+      priority: value
+    })
+  }
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.input_group}>
@@ -45,12 +56,17 @@ const NewTaskForm = () => {
       </div>
       <div className={styles.input_group}>
         <label>Prioridad:</label>
-        <select name='priority' value={newTask.priority} onChange={handleChange}>
-          <option value='Normal'>Normal</option>
-          <option value='Urgente'>Urgente</option>
-        </select>
+        <div className={styles.selectBox}>
+          <input type='text' className={styles.selectedOption} name='priority' value={newTask.priority} onChange={handleChange} readOnly />
+          <AngleIcon />
+          <ul className={styles.optionsList}>
+            {
+              priorityList.map((item, index) => <li key={index} className={styles.optionsList__item} onClick={handleSelect}>{item}</li>)
+            }
+          </ul>
+        </div>
       </div>
-      <button>Agregar</button>
+      <button type='submit'>Agregar</button>
     </form>
   )
 }

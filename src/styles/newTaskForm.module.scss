@@ -21,8 +21,7 @@
     }
 
     input,
-    textarea,
-    select {
+    textarea {
       width: 100%;
       background-color: rgba(clr.$blue, .2);
       border: none;
@@ -34,8 +33,7 @@
       padding: .2rem .5rem;
     }
 
-    input,
-    select {
+    input {
       height: 2.5rem;
     }
 
@@ -43,6 +41,61 @@
       flex-grow: 1;
       resize: none;
       min-height: 4rem;
+    }
+
+    .selectBox {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: .2rem .5rem;
+      border-radius: .5rem;
+      background-color: rgba(clr.$blue, .2);
+      cursor: pointer;
+
+      &:hover .optionsList {
+        transform: scaleY(1);
+      }
+
+      svg {
+        transform: rotateZ(-90deg);
+        transition: transform .2s ease;
+      }
+
+      &:hover svg {
+        transform: rotateZ(-180deg);
+      }
+
+      .selectedOption {
+        background: none;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .optionsList {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 110%;
+        border-radius: .5rem;
+        background-color: #c6ddf0;
+        border: 1px solid clr.$blue;
+        transform: scaleY(0);
+        transition: transform .2s ease;
+        transform-origin: bottom;
+
+        .optionsList__item{ 
+          list-style: none;
+          padding: .2rem .5rem;
+          font-size: 1.1rem;
+          font-weight: 500;
+
+          &:hover {
+            background-color: rgba(clr.$blue, .4);
+          }
+        }
+      }
     }
   }
 
