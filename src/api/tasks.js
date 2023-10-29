@@ -44,3 +44,34 @@ export const getSingleTask = async (id) => {
     throw error
   }
 }
+
+export const updateTask = async (id, data) => {
+  try {
+    const response = await fetch(`http://localhost:8000/tasks/${id}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+      throw new Error('Error al actualizar la tarea')
+    }
+    return response.json()
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+
+export const deleteTask = async (id) => {
+  try {
+    const response = await fetch(`http://localhost:8000/tasks/${id}`, {
+      method: 'DELETE'
+    })
+    return response.json()
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
