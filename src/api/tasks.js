@@ -69,7 +69,12 @@ export const deleteTask = async (id) => {
     const response = await fetch(`http://localhost:8000/tasks/${id}`, {
       method: 'DELETE'
     })
-    return response.json()
+
+    if (response.status !== 204) {
+      return response.json()
+    }
+
+    return null
   } catch (error) {
     console.log(error)
     throw error
