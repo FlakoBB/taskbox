@@ -8,13 +8,15 @@ import { useEffect, useState } from 'react'
 import NewTaskForm from '@/components/forms/newTaskForm'
 import TasksList from '@/components/TasksList'
 import { useRouter } from 'next/navigation'
+import { useActiveSession } from '@/hooks/activeSession'
 
 export default function Home () {
   const router = useRouter()
 
+  const [, isActiveSession] = useActiveSession()
+
   useEffect(() => {
-    const session = localStorage.getItem('TBS')
-    if (!session) {
+    if (!isActiveSession) {
       router.push('/acceder')
     }
   }, [])

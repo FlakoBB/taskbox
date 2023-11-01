@@ -4,6 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 import { EditIcon } from '@/components/icons/icons'
 import Footer from '@/components/pure/Footer'
 import Header from '@/components/pure/Header'
+import { useActiveSession } from '@/hooks/activeSession'
 import styles from '@/styles/taskPage.module.scss'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -18,9 +19,10 @@ const TaskPage = ({ params }) => {
 
   const router = useRouter()
 
+  const [, isActiveSession] = useActiveSession()
+
   useEffect(() => {
-    const session = localStorage.getItem('TBS')
-    if (!session) {
+    if (!isActiveSession) {
       router.push('/acceder')
     }
     const getTaskDetails = async () => {

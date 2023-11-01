@@ -1,5 +1,6 @@
 'use client'
 import { loginUser } from '@/api/users'
+import { useActiveSession } from '@/hooks/activeSession'
 import styles from '@/styles/registerForm.module.scss'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -24,11 +25,13 @@ const LoginForm = () => {
     })
   }
 
+  const [, , , createSession] = useActiveSession()
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       await loginUser(loginData)
-      localStorage.setItem('TBS', loginData.username)
+      createSession(loginData.username)
       router.push('/')
       event.target.reset()
     } catch (error) {

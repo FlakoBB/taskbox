@@ -1,15 +1,16 @@
 'use client'
 import SectionContainer from '@/components/SectionContainer'
 import LoginForm from '@/components/forms/LoginForm'
+import { useActiveSession } from '@/hooks/activeSession'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 const LoginPage = () => {
   const router = useRouter()
+  const [, isActiveSession] = useActiveSession()
 
   useEffect(() => {
-    const session = localStorage.getItem('TBS')
-    if (session) {
+    if (isActiveSession) {
       router.push('/')
     }
   }, [])

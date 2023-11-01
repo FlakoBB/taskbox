@@ -3,6 +3,7 @@ import { addTask } from '@/api/tasks'
 import styles from '@/styles/newTaskForm.module.scss'
 import { useId, useState } from 'react'
 import { AngleIcon } from '../icons/icons'
+import { useActiveSession } from '@/hooks/activeSession'
 
 const priorityList = ['Normal', 'Urgente']
 
@@ -10,11 +11,13 @@ const NewTaskForm = () => {
   const titleID = useId()
   const descriptionID = useId()
 
+  const [username] = useActiveSession()
+
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
     priority: 'Normal',
-    user_id: typeof window !== 'undefined' && localStorage.getItem('TBS')
+    user_id: username
   })
 
   const handleChange = (event) => {

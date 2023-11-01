@@ -3,15 +3,18 @@ import Image from 'next/image'
 import styles from '@/styles/header.module.scss'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { useActiveSession } from '@/hooks/activeSession'
 
 const Header = () => {
   const pathname = usePathname()
-  const username = typeof window !== 'undefined' && localStorage.getItem('TBS')
+
+  const [username, , , , deleteSession] = useActiveSession()
+  const userId = username
 
   const router = useRouter()
 
   const logout = () => {
-    localStorage.removeItem('TBS')
+    deleteSession()
     router.push('/acceder')
   }
 
@@ -24,7 +27,7 @@ const Header = () => {
       </figure>
       <div className={styles.actions}>
         <Link className={styles.link} href={pathname !== '/' ? '/' : '/perfil'}>
-          {pathname === '/' ? username : 'Volver'}
+          {pathname === '/' ? userId : 'Volver'}
         </Link>
         <button type='button' onClick={logout}>Salir</button>
       </div>

@@ -4,6 +4,7 @@ import SectionContainer from '@/components/SectionContainer'
 import { EditIcon } from '@/components/icons/icons'
 import Footer from '@/components/pure/Footer'
 import Header from '@/components/pure/Header'
+import { useActiveSession } from '@/hooks/activeSession'
 import styles from '@/styles/profilePage.module.scss'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -17,14 +18,15 @@ const ProfilePage = () => {
   })
   const router = useRouter()
 
+  const [username, isActiveSession] = useActiveSession()
+
   useEffect(() => {
-    const session = localStorage.getItem('TBS')
-    if (!session) {
+    if (!isActiveSession) {
       router.push('/acceder')
     }
     const getUser = async () => {
       try {
-        const data = await getSingleUser(session)
+        const data = await getSingleUser(username)
         setUserData(data)
       } catch (error) {
         console.log(error)
