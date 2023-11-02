@@ -38,3 +38,13 @@ export const AngleIcon = () => {
     </svg>
   )
 }
+
+export const SaveIcon = () => {
+  return (
+    <svg xmlns='http://www.w3.org/2000/svg' fill='currentColor' className='icon' viewBox='0 0 24 24'>
+      <rect x='7' width='10' height='6' />
+      <circle cx='12' cy='14' r='2' />
+      <path d='M19,0V8H5V0H3A3,3,0,0,0,0,3V24H24V5ZM12,18a4,4,0,1,1,4-4A4,4,0,0,1,12,18Z' />
+    </svg>
+  )
+}
