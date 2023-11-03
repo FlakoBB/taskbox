@@ -55,3 +55,22 @@ export const getSingleUser = async (user) => {
     throw error
   }
 }
+
+export const updateUser = async (id, data) => {
+  try {
+    const response = await fetch(`http://localhost:8000/users/${id}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+      throw new Error('Error al actualizar usuario')
+    }
+    return response.json()
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}

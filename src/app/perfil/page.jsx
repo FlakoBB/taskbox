@@ -1,7 +1,7 @@
 'use client'
-import { getSingleUser } from '@/api/users'
+import { getSingleUser, updateUser } from '@/api/users'
 import SectionContainer from '@/components/SectionContainer'
-import { EditIcon } from '@/components/icons/icons'
+import { EditIcon, SaveIcon } from '@/components/icons/icons'
 import Footer from '@/components/pure/Footer'
 import Header from '@/components/pure/Header'
 import { useActiveSession } from '@/hooks/activeSession'
@@ -35,6 +35,65 @@ const ProfilePage = () => {
     getUser()
   }, [])
 
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setUserData({
+      ...userData,
+      [name]: value
+    })
+  }
+
+  const [isNameEditing, setIsNameEditing] = useState(false)
+  const [isSurnameEditing, setIsSurnameEditing] = useState(false)
+  const [isPasswordEditing, setIsPasswordEditing] = useState(false)
+
+  const editingSubmit = async (event) => {
+    event.preventDefault()
+    const formId = event.target.getAttribute('id')
+    const input = event.target[0]
+    const { name, value } = input
+
+    if (input.hasAttribute('readOnly')) {
+      input.removeAttribute('readOnly')
+      switch (formId) {
+        case 'nameForm':
+          setIsNameEditing(true)
+          break
+        case 'descriptionForm':
+          setIsSurnameEditing(true)
+          break
+        case 'priorityForm':
+          setIsPasswordEditing(true)
+          break
+        default:
+          console.error('Formulario Desconocido')
+      }
+    } else {
+      try {
+        await updateUser(username, {
+          [name]: value
+        })
+        console.log(`${name}, actualizado`)
+      } catch (error) {
+        console.error(error)
+      }
+      switch (formId) {
+        case 'nameForm':
+          setIsNameEditing(false)
+          break
+        case 'descriptionForm':
+          setIsSurnameEditing(false)
+          break
+        case 'priorityForm':
+          setIsPasswordEditing(false)
+          break
+        default:
+          console.error('Formulario Desconocido')
+      }
+      input.setAttribute('readOnly', true)
+    }
+  }
+
   return (
     <>
       <Header />
@@ -45,35 +104,41 @@ const ProfilePage = () => {
               <label>Usuario:</label>
               <div className={styles.field}>
                 <input type='text' value={userData.username} readOnly />
-                <button>
+                {/* <button> // ToDo: Hacer comprobacion con contraseña para poder editar
                   <EditIcon />
-                </button>
+                </button> */}
               </div>
             </div>
             <div className={styles.fieldContainer}>
               <label>Nombre:</label>
-              <div className={styles.field}>
-                <input type='text' value={userData.name} readOnly />
-                <button>
-                  <EditIcon />
+              <form id='nameForm' className={styles.field} onSubmit={editingSubmit}>
+                <input type='text' name='name' value={userData.name} onChange={handleChange} readOnly />
+                <button type='submit'>
+                  {
+                    isNameEditing ? <SaveIcon /> : <EditIcon />
+                  }
                 </button>
-              </div>
+              </form>
             </div>
             <div className={styles.fieldContainer}>
               <label>Apellido:</label>
               <div className={styles.field}>
-                <input type='text' value={userData.surname} readOnly />
-                <button>
-                  <EditIcon />
+                <input type='text' name='surname' value={userData.surname} onChange={handleChange} readOnly />
+                <button type='submit'>
+                  {
+                    isSurnameEditing ? <SaveIcon /> : <EditIcon />
+                  }
                 </button>
               </div>
             </div>
             <div className={styles.fieldContainer}>
               <label>Contraseña:</label>
               <div className={styles.field}>
-                <input type='password' value={userData.password} readOnly />
-                <button>
-                  <EditIcon />
+                <input type='password' name='password' value={userData.password} onChange={handleChange} readOnly />
+                <button type='submit'>
+                  {
+                    isPasswordEditing ? <SaveIcon /> : <EditIcon />
+                  }
                 </button>
               </div>
             </div>
